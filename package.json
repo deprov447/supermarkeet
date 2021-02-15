@@ -1,0 +1,18 @@
+{
+  "name": "supermarkeet",
+  "version": "1.0.0",
+  "description": "Supermarket management app for DBMS project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node back/app.js",
+    "dev": "nodemon back/app.js"
+  },
+  "author": "Anubhav Choudhary, Baibhav Prasad, Shuvam Pani",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
