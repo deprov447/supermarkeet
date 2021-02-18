@@ -1,11 +1,13 @@
 // Includes
 const express = require("express");
 const ejs = require("ejs");
+const path = require("path")
 
 
 // Presets
 const app = express(); 
 app.listen(8000);
+app.use(express.static(path.join(__dirname, '../../front/')));
 const frontPath = "../front/pages/";
 
 /************ Routes ****************/
