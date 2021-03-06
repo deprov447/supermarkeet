@@ -8,5 +8,33 @@
 </head>
 <body>
     <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, ut?</h1>
+
+
+    <h3>Select 1:</h3>
+    <form action="/index/post" method="post">
+        <select name="accessType" id="access-type">
+            <option value="admin">admin</option>
+            <option value="customer">customer</option>
+        </select>
+
+        <div id="credField">
+            <input placeholder="Access ID" name="accessID"  type="text">
+            <input placeholder="Password" name="password" type="password">
+        </div><br>
+        <input type="submit" value="submit">
+
+    </form>
+        
+
+    <br>
+    <a href="/admin">admin</a>
+    <a href="/admin/sale">admin/sale</a>
+    <a href="/admin/employees">admin/employees</a>
+    <a href="/admin/employee-sale">admin/employees-sale</a>
+    <a href="/admin/products">admin/products</a>
+    <a href="/customer">customer</a>
+    <a href="/about">about</a>
+
+    <script src="js/index.js"></script>
 </body>
 </html>
