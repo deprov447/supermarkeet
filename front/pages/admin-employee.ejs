@@ -20,6 +20,12 @@
                 <td><%= data[i].employeeName %></td>
                 <td><%= data[i].employeeDesgn %></td>
                 <td><%= data[i].employeeSalary %></td>
+                <td>
+                    <form action="/admin/employees/delete" method="POST">
+                        <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         <% }%>
     </table>

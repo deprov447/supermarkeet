@@ -14,26 +14,19 @@
             <th>Products sold</th>
             <th>profit earned</th>
         </tr>
+        <% for(var i=0; i<dataEmp.length; i++) {%>
         <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy MRP</td>
+            <td><%= dataEmp[i]._id %></td>
+            <td><%= dataEmp[i].employeeName %></td>
+            <td>
+                <% for(var j=0 ;j<dataPro.length*Math.random() ;j++){ %>
+                    <li><%= dataPro[Math.floor(dataPro.length*Math.random())].productName %></li>
+                <% } %>
+
+            </td>
+            <td><%= dataEmp[i].employeeName.length*1000*Math.random() %></td>
         </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy MRP</td>
-        </tr>
+        <% } %>
     </table>
-    <button>Add product</button>
-    <form action="/admin/products" method="post">
-        <input name="employeeID" placeholder="employee ID" type="text">
-        <input name="employeeName" placeholder="employee Name" type="text">
-        <input name="employeeDesgn" placeholder="employee designation" type="text">
-        <input name="employeeSalary" placeholder="employee salary" type="text">
-        <input type="submit" value="submit">
-    </form>
 </body>
 </html>

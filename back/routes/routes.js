@@ -62,7 +62,12 @@ app.get("/admin",(req,res)=>{
 
 
 app.get("/admin/sale",(req,res)=>{
-    res.render(frontPath+"admin-sale.ejs")
+    Product.find(function (err,data) {
+        if(err) 
+            return console.log(err);
+        console.log(data)
+        res.render(frontPath+"admin-sale.ejs",{data:data})
+    })
 })
 
 app.get("/admin/employees",(req,res)=>{
@@ -70,7 +75,7 @@ app.get("/admin/employees",(req,res)=>{
     Employee.find(function (err,data) {
         if(err) 
             return console.log(err);
-        console.log(data)
+        // console.log(data)
         res.render(frontPath+"admin-employee.ejs",{data:data})
     })
 
@@ -88,13 +93,22 @@ app.get("/admin/employees",(req,res)=>{
 
         res.redirect("/admin/employees")
     })
+    app.post("/admin/employees/delete",(req,res)=>{
+        var id = req.body.id;
+        Employee.findByIdAndDelete(id,()=>{
+            console.log("deleted");
+            // console.log(req.body)
+            // console.log("hello")
+            res.redirect("/admin/employees")
+        })
+    })
 
 
 app.get("/admin/products",(req,res)=>{
     Product.find(function (err,data) {
         if(err) 
             return console.log(err);
-        console.log(data)
+        // console.log(data)
         res.render(frontPath+"admin-products.ejs",{data:data})
     })
 })
@@ -110,14 +124,27 @@ app.get("/admin/products",(req,res)=>{
         newProduct.save().then(()=>console.log("new product saved"))
         res.redirect("/admin/products")
     })
-    app.delete("/admin/products",(req,res)=>{
-        console.log(req.body);
-        res.redirect("/admin/products")
+    app.post("/admin/products/delete",(req,res)=>{
+        var id = req.body.id;
+        Product.findByIdAndDelete(id,()=>{
+            console.log("deleted");
+            // console.log(req.body)
+            // console.log("hello")
+            res.redirect("/admin/products")
+        })
     })
 
 
 app.get("/admin/employee-sale",(req,res)=>{
-    res.render(frontPath+"admin-employee-sale.ejs")
+    Employee.find(function (err,dataEmp) {
+        if(err) 
+            return console.log(err);
+    Product.find(function (err,dataPro) {
+                if(err) 
+                    return console.log(err);
+                    res.render(frontPath+"admin-employee-sale.ejs",{dataEmp:dataEmp,dataPro:dataPro})
+            })
+    })
 })
 
 

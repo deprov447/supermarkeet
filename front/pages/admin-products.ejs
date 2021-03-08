@@ -20,6 +20,12 @@
             <td><%= data[i].productName %></td>
             <td><%= data[i].productQuantity %></td>
             <td><%= data[i].productMRP %></td>
+            <td>
+                <form action="/admin/products/delete" method="POST">
+                    <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
         </tr>
         <% } %>
     </table>

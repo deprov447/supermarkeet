@@ -14,22 +14,18 @@
             <th>Product Name</th>
             <th>Quantity Sold</th>
             <th>Profit Earned</th>
-            <th>Average time of sale</th>
+            <th>Median time of sale</th>
         </tr>
+        <% for(var i=0; i<data.length; i++ ){ %>
         <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy profit</td>
-            <td>dummy time</td>
+            <% var rand = Math.random() %>
+            <td><%= data[i]._id %></td>
+            <td><%= data[i].productName %></td>
+            <td><%= Math.ceil(data[i].productQuantity * rand) %></td>
+            <td><%= Math.floor(data[i].productQuantity * data[i].productMRP * rand) %> </td>
+            <td><%= new Date(+(new Date()) - Math.floor(Math.random()*10000000000)) %></td>
         </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy profit</td>
-            <td>dummy time</td>
-        </tr>
+        <% } %>
     </table>
     min profit
     max profit
