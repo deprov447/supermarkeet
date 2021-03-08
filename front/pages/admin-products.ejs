@@ -14,18 +14,14 @@
             <th>Quantity</th>
             <th>MRP</th>
         </tr>
+        <% for(var i=0; i<data.length; i++){ %>
         <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy MRP</td>
+            <td><%= data[i]._id %></td>
+            <td><%= data[i].productName %></td>
+            <td><%= data[i].productQuantity %></td>
+            <td><%= data[i].productMRP %></td>
         </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy MRP</td>
-        </tr>
+        <% } %>
     </table>
     <button>Add product</button>
     <form action="/admin/products" method="post">

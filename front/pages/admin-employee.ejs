@@ -14,18 +14,14 @@
             <th>designation</th>
             <th>salary</th>
         </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy MRP</td>
-        </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy number</td>
-            <td>dummy Q</td>
-            <td>dummy MRP</td>
-        </tr>
+        <% for(var i=0; i<data.length; i++){ %>
+            <tr>
+                <td><%= data[i]._id %></td>
+                <td><%= data[i].employeeName %></td>
+                <td><%= data[i].employeeDesgn %></td>
+                <td><%= data[i].employeeSalary %></td>
+            </tr>
+        <% }%>
     </table>
     <button>Add product</button>
     <form action="/admin/employees" method="post">

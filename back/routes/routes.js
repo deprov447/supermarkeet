@@ -3,6 +3,7 @@ const express       = require("express"),
       ejs           = require("ejs"),
       path          = require("path"),
       methOvr       = require("method-override");
+const { Mongoose } = require("mongoose");
       bodyParser    = require("body-parser");
 
 
@@ -63,18 +64,16 @@ app.get("/admin",(req,res)=>{
 app.get("/admin/sale",(req,res)=>{
     res.render(frontPath+"admin-sale.ejs")
 })
-    app.post("/admin/sale",(req,res)=>{
-        console.log(req.body);
-        res.redirect("/admin/sale")
-    })
-    app.delete("/admin/sale",(req,res)=>{
-        console.log(req.body);
-        res.redirect("/admin/sale")
-    })
-
 
 app.get("/admin/employees",(req,res)=>{
-    res.render(frontPath+"admin-employee.ejs")
+
+    Employee.find(function (err,data) {
+        if(err) 
+            return console.log(err);
+        console.log(data)
+        res.render(frontPath+"admin-employee.ejs",{data:data})
+    })
+
 })
     app.post("/admin/employees",(req,res)=>{
         const newEmployee = new Employee(
@@ -89,14 +88,15 @@ app.get("/admin/employees",(req,res)=>{
 
         res.redirect("/admin/employees")
     })
-    app.delete("/admin/employees",(req,res)=>{
-        console.log(req.body);
-        res.redirect("/admin/employees")
-    })
 
 
 app.get("/admin/products",(req,res)=>{
-    res.render(frontPath+"admin-products.ejs")
+    Product.find(function (err,data) {
+        if(err) 
+            return console.log(err);
+        console.log(data)
+        res.render(frontPath+"admin-products.ejs",{data:data})
+    })
 })
     app.post("/admin/products",(req,res)=>{
         const newProduct = new Product(
