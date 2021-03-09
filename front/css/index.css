@@ -76,13 +76,9 @@ body{
     background-color: #1687a7;
     cursor: pointer;
 }
-.btn-warning:hover{
-<<<<<<< HEAD
-    background-color: #ffcc29;
-    cursor: pointer;
-}
 
-=======
-    background-color: #FFC44D;
+.headings{
+    background-color: white;
+    padding: 50px;
+    text-align: center;
 }
->>>>>>> 9923a59523d38a2700d90b7c39ae7516af0f18ae

@@ -1,0 +1,37 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/yeti/bootstrap.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css';
+
+.table-sortable th:not([data-sortable="false"]) {
+  cursor: pointer;
+}
+
+.table-sortable th:not([data-sortable="false"])::after {
+  content: " " attr(data-sort-direction);
+}
+
+.table-sortable th[data-sortable="false"] {
+  background-color: lightcoral;
+}
+
+#addBtn{
+  position: relative;
+  display: block;
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: large;
+  background-color: white;
+}
+
+.addForm{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+}
+
+#ex1{
+  background-color: red;
+  height: 500px;
+}

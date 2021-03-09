@@ -4,38 +4,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employees Page</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/adminEmployees.css">
 </head>
-<body>
-    <h1>This is employees page</h1>
-    <table border="2px">
-        <tr>
-            <th>employee ID</th>
-            <th>employee Name</th>
-            <th>designation</th>
-            <th>salary</th>
-        </tr>
-        <% for(var i=0; i<data.length; i++){ %>
-            <tr>
-                <td><%= data[i]._id %></td>
-                <td><%= data[i].employeeName %></td>
-                <td><%= data[i].employeeDesgn %></td>
-                <td><%= data[i].employeeSalary %></td>
-                <td>
-                    <form action="/admin/employees/delete" method="POST">
-                        <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
-                        <button type="submit">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        <% }%>
-    </table>
-    <button>Add product</button>
-    <form action="/admin/employees" method="post">
-        <input name="employeeID" placeholder="employee ID" type="text">
-        <input name="employeeName" placeholder="employee Name" type="text">
-        <input name="employeeDesgn" placeholder="employee designation" type="text">
-        <input name="employeeSalary" placeholder="employee salary" type="text">
-        <input type="submit" value="submit">
-    </form>
+<body class="bg-cover">
+    <div class="headings">
+        <h1>This is employees page</h1>
+    </div>
+    <div class="container">
+        <div class="card shadow my-5">
+          <h4 class="card-header">Table</h4>
+          <div class="card-body">
+            <table class="table table-striped table-bordered table-hover table-responsive">
+              <thead>
+                <tr>
+                    <th>employee ID</th>
+                    <th>employee Name</th>
+                    <th>designation</th>
+                    <th>salary</th>
+                    <th data-sortable="false">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i=0; i<data.length; i++){ %>
+                <tr>
+                    <td><%= data[i]._id %></td>
+                    <td><%= data[i].employeeName %></td>
+                    <td><%= data[i].employeeDesgn %></td>
+                    <td><%= data[i].employeeSalary %></td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                            <form action="/admin/employees/delete" method="POST">
+                                <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
+                                <button type="button" class="btn btn-outline-dark"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="btn btn-outline-dark"><i class="fas fa-pen"></i></button>
+                                <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer"></div>
+        </div>
+      </div>
+
+      <p>
+          <a href="#ex1" rel="modal:open" class="btn" id="addBtn">Add Employee</a>
+    </p>
+
+    <div id="ex1" class="modal">
+        <form action="/admin/employees" method="post" class="addForm">
+            <input name="employeeID" placeholder="employee ID" type="text">
+            <input name="employeeName" placeholder="employee Name" type="text">
+            <input name="employeeDesgn" placeholder="employee designation" type="text">
+            <input name="employeeSalary" placeholder="employee salary" type="text">
+            <input type="submit" value="submit">
+        </form>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="/js/adminEmployees.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </body>
 </html>
