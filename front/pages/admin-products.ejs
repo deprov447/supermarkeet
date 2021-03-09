@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products page</title>
+</head>
+<body>
+    <h1>This is products page</h1>
+    <table border="2px">
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>MRP</th>
+        </tr>
+        <% for(var i=0; i<data.length; i++){ %>
+        <tr>
+            <td><%= data[i]._id %></td>
+            <td><%= data[i].productName %></td>
+            <td><%= data[i].productQuantity %></td>
+            <td><%= data[i].productMRP %></td>
+            <td>
+                <form action="/admin/products/delete" method="POST">
+                    <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <button>Add product</button>
+    <form action="/admin/products" method="post">
+        <input name="productID" placeholder="Product ID" type="text">
+        <input name="productName" placeholder="Product Name" type="text">
+        <input name="productQuantity" placeholder="Product Quantity" type="text">
+        <input name="productMRP" placeholder="Product MRP" type="text">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

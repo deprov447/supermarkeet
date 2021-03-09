@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin-employee page</title>
+</head>
+<body>
+    <h1>This is admin-employee page</h1>
+    <table border="2px">
+        <tr>
+            <th>employee ID</th>
+            <th>employee Name</th>
+            <th>Products sold</th>
+            <th>profit earned</th>
+        </tr>
+        <% for(var i=0; i<dataEmp.length; i++) {%>
+        <tr>
+            <td><%= dataEmp[i]._id %></td>
+            <td><%= dataEmp[i].employeeName %></td>
+            <td>
+                <% for(var j=0 ;j<dataPro.length*Math.random() ;j++){ %>
+                    <li><%= dataPro[Math.floor(dataPro.length*Math.random())].productName %></li>
+                <% } %>
+
+            </td>
+            <td><%= dataEmp[i].employeeName.length*1000*Math.random() %></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

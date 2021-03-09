@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sale page</title>
+</head>
+<body>
+    <h1>This is sale page</h1>
+    takes most of the data from products table;
+    <table border="2px">
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Quantity Sold</th>
+            <th>Profit Earned</th>
+            <th>Median time of sale</th>
+        </tr>
+        <% for(var i=0; i<data.length; i++ ){ %>
+        <tr>
+            <% var rand = Math.random() %>
+            <td><%= data[i]._id %></td>
+            <td><%= data[i].productName %></td>
+            <td><%= Math.ceil(data[i].productQuantity * rand) %></td>
+            <td><%= Math.floor(data[i].productQuantity * data[i].productMRP * rand) %> </td>
+            <td><%= new Date(+(new Date()) - Math.floor(Math.random()*10000000000)) %></td>
+        </tr>
+        <% } %>
+    </table>
+    min profit
+    max profit
+    quickest sell
+</body>
+</html>

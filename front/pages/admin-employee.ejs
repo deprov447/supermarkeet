@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees Page</title>
+</head>
+<body>
+    <h1>This is employees page</h1>
+    <table border="2px">
+        <tr>
+            <th>employee ID</th>
+            <th>employee Name</th>
+            <th>designation</th>
+            <th>salary</th>
+        </tr>
+        <% for(var i=0; i<data.length; i++){ %>
+            <tr>
+                <td><%= data[i]._id %></td>
+                <td><%= data[i].employeeName %></td>
+                <td><%= data[i].employeeDesgn %></td>
+                <td><%= data[i].employeeSalary %></td>
+                <td>
+                    <form action="/admin/employees/delete" method="POST">
+                        <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }%>
+    </table>
+    <button>Add product</button>
+    <form action="/admin/employees" method="post">
+        <input name="employeeID" placeholder="employee ID" type="text">
+        <input name="employeeName" placeholder="employee Name" type="text">
+        <input name="employeeDesgn" placeholder="employee designation" type="text">
+        <input name="employeeSalary" placeholder="employee salary" type="text">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

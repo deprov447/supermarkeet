@@ -77,7 +77,12 @@ body{
     cursor: pointer;
 }
 .btn-warning:hover{
+<<<<<<< HEAD
     background-color: #ffcc29;
     cursor: pointer;
 }
 
+=======
+    background-color: #FFC44D;
+}
+>>>>>>> 9923a59523d38a2700d90b7c39ae7516af0f18ae
