@@ -1,0 +1,16 @@
+.container{
+    max-width: 1155px;
+    margin: 50px auto;
+    min-height: 80vh;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+table{
+    border: black;
+    flex: 80%;
+    margin: 10px auto;
+    max-width: 80%;
+}
+table, th, td, tr {
+    border: 1px solid black;
+    border-collapse: collapse;
+}

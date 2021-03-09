@@ -39,6 +39,19 @@ app.get("/about", (req,res)=>{
     res.render(frontPath+"about.ejs");
 });
 
+//Employees
+app.get("/employees", (req,res)=>{
+    res.render(frontPath+"employees.ejs");
+});
+
+//SignUp
+app.get("/signup", (req,res)=>{
+    res.render(frontPath+"signup.ejs");
+});
+//Login
+app.get("/login", (req,res)=>{
+    res.render(frontPath+"login.ejs");
+});
 // 404 page
 app.get("*",(req,res)=>{
     res.send("404 lost in the depths of internet :/");

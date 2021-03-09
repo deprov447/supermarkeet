@@ -1,0 +1,68 @@
+.sign-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signbox {
+  width: 400px;
+  min-height: 200px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+}
+.signbox > h1{
+    color: #f8f8d5;
+    text-shadow: 2px 3px 3px #000;
+    text-align: center;
+    margin: 20px auto;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.signbox > hr{
+    max-width: 70%;
+    height: 5px;
+    background: linear-gradient(90deg,rgb(75 69 69),rgb(0 0 0),rgb(75 69 69));
+    margin: auto;
+    border: none;
+    border-radius: 5px;
+}
+
+.signbox input {
+  width: 100%;
+  margin-top: 20px;
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  /* opacity: 0.5; */
+  /* background-color: rgb(37, 35, 35); */
+  /* color: white; */
+}
+.signbox input::placeholder {
+  color: gray;
+}
+.signbox input {
+  border: none;
+  color: gray;
+  box-shadow: 0 3px 5px gray;
+}
+
+form button {
+  background-color: #440a64;
+  border: none;
+  color: whitesmoke;
+  width: 70%;
+  margin: 20px auto;
+  /* margin-top: 20px; */
+  height: 40px;
+  border-radius: 5px;
+  text-align: center;
+  transition-property: background-color,width;
+  transition-duration: 500ms;
+  display: block;
+}
+
+.signbox button:hover {
+  background-color:#93329e ;
+  cursor: pointer;
+  width: 80%;
+}
