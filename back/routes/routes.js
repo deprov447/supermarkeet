@@ -3,12 +3,29 @@ const express       = require("express"),
       ejs           = require("ejs"),
       path          = require("path"),
       methOvr       = require("method-override");
-const { Mongoose } = require("mongoose");
-      bodyParser    = require("body-parser");
+const { Mongoose }  = require("mongoose"),
+      bodyParser    = require("body-parser"),
+      passport      = require("passport"),
+      passportLocalMongoose = require('passport-local-mongoose'),
+      connectEnsureLogin = require('connect-ensure-login');
+      
+
+const expressSession = require('express-session')({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+});
 
 
 const Employee = require("./../database/models/employees");
 const Product = require("./../database/models/products");
+const UserDetails = require("./../database/models/admin")
+
+// 
+// UserDetails.register({username:'paul', active: false}, 'paul');
+// UserDetails.register({username:'jay', active: false}, 'jay');
+// UserDetails.register({username:'roy', active: false}, 'roy');
+// 
 
 
 // Presets
@@ -18,6 +35,17 @@ app.use(express.static(path.join(__dirname, '../../front/')));
 const frontPath = "../front/pages/";
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methOvr("_method"));
+app.use(expressSession);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+/* PASSPORT LOCAL AUTHENTICATION */
+
+passport.use(UserDetails.createStrategy());
+
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser());
 
 
 /************ Routes ****************/
@@ -51,17 +79,9 @@ app.get("/customer",(req,res)=>{
 app.get("/admin",(req,res)=>{
     res.render(frontPath+"admin.ejs")
 })
-    app.post("/admin",(req,res)=>{
-        console.log(req.body);
-        res.redirect("/admin")
-    })
-    app.delete("/admin/sale",(req,res)=>{
-        console.log(req.body);
-        res.redirect("/admin/sale")
-    })
 
 
-app.get("/admin/sale",(req,res)=>{
+app.get("/admin/sale",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
     Product.find(function (err,data) {
         if(err) 
             return console.log(err);
@@ -70,7 +90,7 @@ app.get("/admin/sale",(req,res)=>{
     })
 })
 
-app.get("/admin/employees",(req,res)=>{
+app.get("/admin/employees",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
 
     Employee.find(function (err,data) {
         if(err) 
@@ -80,7 +100,7 @@ app.get("/admin/employees",(req,res)=>{
     })
 
 })
-    app.post("/admin/employees",(req,res)=>{
+    app.post("/admin/employees",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
         const newEmployee = new Employee(
             {
                 employeeID:req.body.employeeID,
@@ -93,7 +113,7 @@ app.get("/admin/employees",(req,res)=>{
 
         res.redirect("/admin/employees")
     })
-    app.post("/admin/employees/delete",(req,res)=>{
+    app.post("/admin/employees/delete",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
         var id = req.body.id;
         Employee.findByIdAndDelete(id,()=>{
             console.log("deleted");
@@ -104,7 +124,7 @@ app.get("/admin/employees",(req,res)=>{
     })
 
 
-app.get("/admin/products",(req,res)=>{
+app.get("/admin/products",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
     Product.find(function (err,data) {
         if(err) 
             return console.log(err);
@@ -112,7 +132,7 @@ app.get("/admin/products",(req,res)=>{
         res.render(frontPath+"admin-products.ejs",{data:data})
     })
 })
-    app.post("/admin/products",(req,res)=>{
+    app.post("/admin/products",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
         const newProduct = new Product(
             {
                 productID: req.body.productID,
@@ -124,7 +144,7 @@ app.get("/admin/products",(req,res)=>{
         newProduct.save().then(()=>console.log("new product saved"))
         res.redirect("/admin/products")
     })
-    app.post("/admin/products/delete",(req,res)=>{
+    app.post("/admin/products/delete",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
         var id = req.body.id;
         Product.findByIdAndDelete(id,()=>{
             console.log("deleted");
@@ -135,7 +155,7 @@ app.get("/admin/products",(req,res)=>{
     })
 
 
-app.get("/admin/employee-sale",(req,res)=>{
+app.get("/admin/employee-sale",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
     Employee.find(function (err,dataEmp) {
         if(err) 
             return console.log(err);
@@ -153,19 +173,37 @@ app.get("/about", (req,res)=>{
     res.render(frontPath+"about.ejs");
 });
 
-//Employees
-app.get("/employees", (req,res)=>{
-    res.render(frontPath+"employees.ejs");
-});
-
 //SignUp
-app.get("/signup", (req,res)=>{
-    res.render(frontPath+"signup.ejs");
+app.get("/wrongCred", (req,res)=>{
+    res.send("wrong credentials + <a href='/admin/'>login again</a>");
 });
 //Login
 app.get("/login", (req,res)=>{
     res.render(frontPath+"login.ejs");
 });
+
+app.post('/login', (req, res, next) => {
+    passport.authenticate('local',
+    (err, user, info) => {
+    if (err) {
+        return next(err);
+    }
+
+    if (!user) {
+        return res.redirect('/wrongCred/');
+    }
+
+    req.logIn(user, function(err) {
+        if (err) {
+        return next(err);
+        }
+
+        return res.redirect('/admin/');
+    });
+
+    })(req, res, next);
+});
+
 // 404 page
 app.get("*",(req,res)=>{
     res.send("404 lost in the depths of internet :/");

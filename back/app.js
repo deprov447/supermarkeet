@@ -7,5 +7,6 @@ const url = `mongodb://sammy:your_password@127.0.0.1:27017/supermarkeet?authSour
 
 mongoose.connect(url, {useNewUrlParser: true});
 
+
 //Routes
 const routes = require("./routes/routes.js")
