@@ -76,6 +76,10 @@ body{
     background-color: #1687a7;
     cursor: pointer;
 }
+.btn-warning:hover{
+    background-color: red;
+    cursor: pointer;
+}
 
 .headings{
     background-color: white;

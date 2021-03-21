@@ -76,8 +76,13 @@ app.get("/customer",(req,res)=>{
 })
 
 
-app.get("/admin",(req,res)=>{
-    res.render(frontPath+"admin.ejs")
+app.get("/admin",connectEnsureLogin.ensureLoggedIn(),(req,res)=>{
+    UserDetails.find(function (err,data) {
+        if(err) 
+            return console.log(err);
+        console.log(data)
+        res.render(frontPath+"admin.ejs",{data:data})
+    })
 })
 
 

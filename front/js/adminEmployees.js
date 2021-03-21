@@ -74,3 +74,7 @@ const sortTable = (element, ascending = true) => {
 }
 
 sortTable(table, false);
+
+var image= "<img src='https://img.icons8.com/ios/452/text-cursor.png'>"
+var prev = document.querySelector("#ex1").innerHTML;
+document.querySelector("#ex1").innerHTML=image+prev;

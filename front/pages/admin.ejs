@@ -3,43 +3,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin page</title>
+    <title>Admins</title>
+    <link rel="stylesheet" href="/css/index.css" type="text/css">
+    <link rel="stylesheet" href="/css/adminSale.css" type="text/css">
 </head>
-<body>
-    <h1>This is admin page</h1>
-    you can add or remove admins from here
-    <table border="2px">
-        <tr>
-            <th>Access ID</th>
-            <th>Date of creation</th>
-            <th>Options</th>
-        </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy doc</td>
-            <td>
-                <form action="/admin" method="delete">
-                    <button type="submit">DELETE</button>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td>Dummy ID</td>
-            <td>Dummy doc</td>
-            <td>
-                <form action="/admin" method="delete">
-                    <button type="submit">DELETE</button>
-                </form>
-            </td>
-        </tr>
-    </table>
-    <!-- will render all the admins-->
-    <!-- and option to add and delete some-->
-    <button>Add admin</button>
-    <form action="/admin/login" method="post" class="">
-        <input name="username" placeholder="AccessID" type="text">
-        <input name="password" placeholder="Password" type="password">
-        <input type="submit" value="submit">
-    </form>
+<body class="bg-cover">
+  
+  <%- include("partials/navbar.ejs") %>
+
+<div class="container">
+    <div class="card shadow my-5">
+      <h4 class="card-header">Table</h4>
+      <div class="card-body">
+        <table class="table table-striped table-bordered table-hover table-responsive">
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Hash</th>
+                <th>version</th>
+            </tr>
+          </thead>
+          <tbody>
+                <% for(var i=0; i< data.length ;i++){%>
+                    <tr>
+                    <td>
+                        <%= data[i]._id %>
+                    </td>
+                    <td>
+                        <%= data[i].username %>
+                    </td>
+                    <td>
+                        <%= data[i].salt %>
+                    </td>                    
+                    <td>
+                        <%= data[i].__v %>
+                    </td>
+                </tr>
+                <%}%>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer"></div>
+    </div>
+  </div>
+
+    min profit
+    max profit
+    quickest sell
+    <script src="/js/adminSale.js"></script>
 </body>
 </html>
+

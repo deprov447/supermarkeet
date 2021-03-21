@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employees Page</title>
+    <title>Products Page</title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/adminEmployees.css">
 </head>
@@ -36,8 +36,8 @@
                         <div class="btn-group btn-group-sm" role="group">
                             <form action="/admin/products/delete" method="POST">
                                 <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
-                                <button type="button" class="btn btn-outline-dark"><i class="fas fa-eye"></i></button>
-                                <button type="button" class="btn btn-outline-dark"><i class="fas fa-pen"></i></button>
+                                <!-- <button type="button" class="btn btn-outline-dark"><i class="fas fa-eye"></i></button> -->
+                                <!-- <button type="button" class="btn btn-outline-dark"><i class="fas fa-pen"></i></button> -->
                                 <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
                             </form>
                         </div>
@@ -57,7 +57,7 @@
 
     <div id="ex1" class="modal">
         <form action="/admin/products" method="post" class="addForm">
-            <input name="productID" placeholder="Product ID" type="text">
+            <!-- <input name="productID" placeholder="Product ID" type="text"> -->
             <input name="productName" placeholder="Product Name" type="text">
             <input name="productQuantity" placeholder="Product Quantity" type="text">
             <input name="productMRP" placeholder="Product MRP" type="text">

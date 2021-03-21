@@ -36,8 +36,8 @@
                         <div class="btn-group btn-group-sm" role="group">
                             <form action="/admin/employees/delete" method="POST">
                                 <input type="text" value=<%= data[i]._id %> name="id" style="display:none">
-                                <button type="button" class="btn btn-outline-dark"><i class="fas fa-eye"></i></button>
-                                <button type="button" class="btn btn-outline-dark"><i class="fas fa-pen"></i></button>
+                                <!-- <button type="button" class="btn btn-outline-dark"><i class="fas fa-eye"></i></button> -->
+                                <!-- <button type="button" class="btn btn-outline-dark"><i class="fas fa-pen"></i></button> -->
                                 <button type="submit" class="btn btn-outline-dark"><i class="fas fa-trash"></i></button>
                             </form>
                         </div>
@@ -57,7 +57,7 @@
 
     <div id="ex1" class="modal">
         <form action="/admin/employees" method="post" class="addForm">
-            <input name="employeeID" placeholder="employee ID" type="text">
+            <!-- <input name="employeeID" placeholder="employee ID" type="text"> -->
             <input name="employeeName" placeholder="employee Name" type="text">
             <input name="employeeDesgn" placeholder="employee designation" type="text">
             <input name="employeeSalary" placeholder="employee salary" type="text">
